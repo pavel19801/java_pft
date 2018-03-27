@@ -14,6 +14,7 @@ public class HelperBase {
 
   protected void click(By locator) {
     wd.findElement(locator).click();
+
   }
 
   public void type(By locator, String text) {
@@ -32,10 +33,13 @@ public class HelperBase {
     wd.findElement(By.name(locator)).clear();
     wd.findElement(By.name(locator)).sendKeys(text);
   }
-
+  public void deleteAlert() {
+    wd.switchTo().alert().accept();
+  }
   public boolean isAlertPresent() {
     try {
       wd.switchTo().alert();
+
       return true;
     } catch (NoAlertPresentException e) {
       return false;

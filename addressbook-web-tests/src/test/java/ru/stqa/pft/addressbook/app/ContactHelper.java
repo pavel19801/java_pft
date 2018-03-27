@@ -75,21 +75,37 @@ public class ContactHelper extends HelperBase {
     click(By.linkText("add new"));
   }
 
+  public void selectContact() {
+    click(By.name("selected[]"));
+  }
+
   public void deleteContactAndBackMain() {
-    click(By.xpath("//div[@id='content']/form[2]/input[2]"));
+    click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
   }
-
-  public void gotoEditFormContact() {
-    click(By.xpath("//table[@id='maintable']/tbody/tr[3]/td[8]/a/img"));
-  }
-
-  public void modifiyContactModification(){
-    click(By.name("modifiy"));
-  }
+  
   public void submitContactModification() {click(By.xpath("//div[@id='content']/form[1]/input[22]"));}
   public void submitContactCreate() {click(By.xpath("//div[@id='content']/form/input[1]"));}
-  public void selectContactModificaion()
-  {
-    click(By.xpath("//table[@id='maintable']/tbody/tr[4]/td[7]/a/img"));
+  public void selectContactModificaion() {click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));}
+
+  public void createGroup(GroupData group) {
+  initGroupCreation();
+ fillgroupForm(group);
+submitGroupCreation();
+returnToGroupPage();
+  }
+
+  public boolean isThereAgroup() {
+    return isElementPresent(By.name("selected[]"));
+  }
+
+  public void createContact(ContactData contact) {
+initContactCreation();
+fillContactForm(contact, true);
+submitContactCreate();
+returnHomePage();
+  }
+
+  public boolean isThereAcontact() {
+    return isElementPresent(By.name("selected[]"));
   }
 }
